@@ -7,5 +7,5 @@ def home(request):
 
 
 def contact(request):
-    return HttpResponse("this is contact...!")
+    return HttpResponse("this is contact...! project uploaded")
 
