@@ -8,6 +8,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Introduction
 from .serializers import IntroductionSerializer
+from .models import AboutSection
+from .serializers import AboutSectionSerializer
 
 # Function-based view (for specific custom endpoints)
 @api_view(['GET'])
@@ -31,4 +33,11 @@ class IntroductionAPIView(APIView):
     def get(self, request):
         intro = Introduction.objects.first()  # assuming only one record
         serializer = IntroductionSerializer(intro)
+        return Response(serializer.data)
+
+
+class AboutSectionAPIView(APIView):
+    def get(self, request):
+        about = AboutSection.objects.first()  # Assuming only one row
+        serializer = AboutSectionSerializer(about)
         return Response(serializer.data)

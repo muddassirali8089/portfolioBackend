@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Profile, Introduction
+from .models import Profile, Introduction, AboutSection
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
@@ -9,4 +9,10 @@ class ProfileSerializer(serializers.ModelSerializer):
 class IntroductionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Introduction
+        fields = '__all__'
+
+
+class AboutSectionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AboutSection
         fields = '__all__'
