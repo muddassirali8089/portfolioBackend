@@ -4,6 +4,11 @@ from rest_framework import generics
 from .models import Profile
 from .serializers import ProfileSerializer
 
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from .models import Introduction
+from .serializers import IntroductionSerializer
+
 # Function-based view (for specific custom endpoints)
 @api_view(['GET'])
 def get_profile(request):
@@ -20,3 +25,10 @@ def get_profile(request):
     
     serializer = ProfileSerializer(profile, context={'request': request})
     return Response(serializer.data)
+
+
+class IntroductionAPIView(APIView):
+    def get(self, request):
+        intro = Introduction.objects.first()  # assuming only one record
+        serializer = IntroductionSerializer(intro)
+        return Response(serializer.data)
