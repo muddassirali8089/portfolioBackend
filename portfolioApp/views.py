@@ -1,11 +1,22 @@
-from django.shortcuts import render
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from rest_framework import generics
+from .models import Profile
+from .serializers import ProfileSerializer
 
-from django.http import HttpResponse
-
-def home(request):
-    return HttpResponse("Hello from portfolioApp!")
-
-
-def contact(request):
-    return HttpResponse("this is contact...! project uploaded")
-
+# Function-based view (for specific custom endpoints)
+@api_view(['GET'])
+def get_profile(request):
+    """
+    Function-based API endpoint to get profile data
+    """
+    profile = Profile.objects.first()
+    
+    if not profile:
+        return Response(
+            {"error": "Profile not found"}, 
+            status=404
+        )
+    
+    serializer = ProfileSerializer(profile, context={'request': request})
+    return Response(serializer.data)

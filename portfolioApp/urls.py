@@ -1,7 +1,6 @@
 from django.urls import path
-from . import views
+from . import views  # Import the whole views module
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('contact/', views.contact, name='contact'),
+    path('api/profile/', views.get_profile, name='api-profile'),  # Use it from the module
 ]
