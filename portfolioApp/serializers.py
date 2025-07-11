@@ -1,6 +1,5 @@
 from rest_framework import serializers
-from .models import Profile, Introduction, AboutSection
-from .models import Resume
+from .models import Profile, Introduction, AboutSection, Education, Experience
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
@@ -12,15 +11,18 @@ class IntroductionSerializer(serializers.ModelSerializer):
         model = Introduction
         fields = '__all__'
 
-
 class AboutSectionSerializer(serializers.ModelSerializer):
     class Meta:
         model = AboutSection
         fields = '__all__'
 
 
-
-class ResumeSerializer(serializers.ModelSerializer):
+class EducationSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Resume
+        model = Education
+        fields = '__all__'
+
+class ExperienceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Experience
         fields = '__all__'

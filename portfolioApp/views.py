@@ -12,8 +12,9 @@ from .models import AboutSection
 from .serializers import AboutSectionSerializer
 from django.shortcuts import render
 from rest_framework import generics
-from .models import Resume
-from .serializers import ResumeSerializer
+from .models import Education, Experience
+from .serializers import EducationSerializer, ExperienceSerializer
+
 
 # Function-based view (for specific custom endpoints)
 
@@ -55,11 +56,28 @@ class AboutSectionAPIView(APIView):
     
 
 
+from .models import Education, Experience
+from .serializers import EducationSerializer, ExperienceSerializer
+from rest_framework import generics
 
-class ResumeListCreateAPIView(generics.ListCreateAPIView):
-    queryset = Resume.objects.all()
-    serializer_class = ResumeSerializer
 
-class ResumeRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Resume.objects.all()
-    serializer_class = ResumeSerializer
+# For Education
+class EducationListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Education.objects.all()
+    serializer_class = EducationSerializer
+
+class EducationDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Education.objects.all()
+    serializer_class = EducationSerializer
+
+from rest_framework import generics
+from .models import Education, Experience
+from .serializers import EducationSerializer, ExperienceSerializer
+
+class EducationListView(generics.ListAPIView):
+    queryset = Education.objects.all().order_by('-start_year')
+    serializer_class = EducationSerializer
+
+class ExperienceListView(generics.ListAPIView):
+    queryset = Experience.objects.all().order_by('-start_year')
+    serializer_class = ExperienceSerializer
