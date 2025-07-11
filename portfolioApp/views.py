@@ -3,7 +3,6 @@ from rest_framework.decorators import api_view
 from rest_framework import generics
 from .models import Profile
 from .serializers import ProfileSerializer
-
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Introduction
@@ -14,6 +13,8 @@ from django.shortcuts import render
 from rest_framework import generics
 from .models import Education, Experience
 from .serializers import EducationSerializer, ExperienceSerializer
+from .models import Service
+from .serializers import ServiceSerializer
 
 
 # Function-based view (for specific custom endpoints)
@@ -81,3 +82,16 @@ class EducationListView(generics.ListAPIView):
 class ExperienceListView(generics.ListAPIView):
     queryset = Experience.objects.all().order_by('-start_year')
     serializer_class = ExperienceSerializer
+
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+
+
+class ServiceListAPIView(APIView):
+    def get(self, request):
+        services = Service.objects.all()
+        serializer = ServiceSerializer(services, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+

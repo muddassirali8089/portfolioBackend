@@ -28,4 +28,5 @@ urlpatterns = [
 
     path('education/', views.EducationListView.as_view(), name='education-list'),
     path('experience/', views.ExperienceListView.as_view(), name='experience-list'),
+    path('api/services/', views.ServiceListAPIView.as_view(), name='service-list'),
 ]

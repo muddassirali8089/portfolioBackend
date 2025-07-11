@@ -1,4 +1,6 @@
 from .Profile import Profile
 from .introduction import Introduction
 from .about import AboutSection
-from .resume import Education, Experience  # ✅ Clean and correct
+from .service import Service  
+from .resume import Education, Experience
+
