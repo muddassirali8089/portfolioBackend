@@ -8,7 +8,7 @@ class SkillAdminForm(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'name': forms.TextInput(attrs={
-                'placeholder': 'e.g. ReactJS'
+                'placeholder': 'e.g. ReactJs'
             }),
             'percent': forms.NumberInput(attrs={
                 'type': 'range',

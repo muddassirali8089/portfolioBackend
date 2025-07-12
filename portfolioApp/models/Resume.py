@@ -44,8 +44,19 @@ class Experience(models.Model):
     start_month = models.CharField(max_length=2, choices=MONTH_CHOICES, default="01")
     start_year = models.CharField(max_length=4, choices=YEAR_CHOICES, default=str(datetime.now().year))
 
-    end_month = models.CharField(max_length=2, choices=MONTH_CHOICES, blank=True, null=True)
-    end_year = models.CharField(max_length=4, choices=YEAR_CHOICES, blank=True, null=True)
+    end_month = models.CharField(
+    max_length=2,
+    choices=MONTH_CHOICES,
+    blank=True,
+    null=True
+    )   
+
+    end_year = models.CharField(
+    max_length=4,
+    choices=YEAR_CHOICES,
+    blank=True,
+    null=True
+    )
 
     is_present = models.BooleanField(default=False, help_text="Check if currently working here")
 
@@ -53,6 +64,9 @@ class Experience(models.Model):
         if self.is_present:
             if self.end_month or self.end_year:
                 raise ValidationError("You selected 'Present' but also provided an end date.")
+            # ✅ Set them to None explicitly just in case
+            self.end_month = None
+            self.end_year = None
         else:
             if not self.end_month or not self.end_year:
                 raise ValidationError("Please provide both end month and year or mark as Present.")
