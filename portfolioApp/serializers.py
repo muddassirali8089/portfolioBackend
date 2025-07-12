@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Profile, Introduction, AboutSection, Education, Experience , Service
+from .models import Profile, Introduction, AboutSection, Education, Experience , Service , Skill
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
@@ -32,3 +32,10 @@ class ServiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Service
         fields = ['id', 'title', 'description', 'projects']
+
+
+
+class SkillSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Skill
+        fields = ['id', 'name', 'logo', 'percent']

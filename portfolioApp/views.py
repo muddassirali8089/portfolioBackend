@@ -94,4 +94,17 @@ class ServiceListAPIView(APIView):
         services = Service.objects.all()
         serializer = ServiceSerializer(services, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from .serializers import SkillSerializer
+from .models.skill import Skill
+
+class SkillListAPIView(APIView):
+    def get(self, request):
+        skills = Skill.objects.all()
+        serializer = SkillSerializer(skills, many=True, context={'request': request})
+        return Response(serializer.data)
+
 
