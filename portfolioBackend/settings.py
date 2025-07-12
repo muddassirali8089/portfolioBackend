@@ -60,6 +60,8 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 ROOT_URLCONF = 'portfolioBackend.urls'
+STATICFILES_DIRS = [ BASE_DIR / "static" ]
+
 
 TEMPLATES = [
     {
